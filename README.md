@@ -7,8 +7,11 @@
 
 ### 스크린샷
 --------------
-> ![1.1ver](./sample2.png)
-> ![1.0ver](./sample.png)
+> `1.1`  
+> ![1.1ver](./sample2.png)  
+
+> `1.0`  
+> ![1.0ver](./sample.png)  
 
 
 ### 버전 
