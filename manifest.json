@@ -1,0 +1,16 @@
+{
+    "name": "PokeCounterSearcher",
+    "version": "1.0",
+    "description": "포켓몬 방어상성 검색기",
+    "manifest_version": 2,
+    "content_security_policy":"script-src 'self' https://pokemon.fandom.com; object-src 'self'",
+
+    "browser_action": {
+        "default_icon": "icon.png",
+        "default_popup": "popup.html"
+      },
+      "permissions": [
+        "activeTab",
+        "*://*.pokemon.fandom.com/*"
+      ]
+  }
