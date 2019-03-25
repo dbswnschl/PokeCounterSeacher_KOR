@@ -1,81 +1,151 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <style>
-        body{
-            min-width:300px;
+
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            min-width: 300px;
         }
-        h1, .ccl{
+
+        h1,
+        .ccl {
             text-align: center;
         }
-        .searchForm{
+
+        .searchForm {
             text-align: center;
             margin-bottom: 10px;
         }
-        #goodDescription, #usualDescription, #notDescription, #lessDescription{
-            display:none;
+
+        #goodDescription,
+        #usualDescription,
+        #notDescription,
+        #lessDescription {
+            display: none;
         }
-        #optionModal{
-            display:none;
+
+        #optionModal {
+            min-width: 30%;
+            padding-bottom: 5%;
+            display: none;
             position: absolute;
-            background-color:white;
-            overflow:hidden;
-            padding:10px;
-            z-index: 9999;
-            top:50%;
-            left:50%;
-            border:1px solid;
+            background-color: white;
+            z-index: 99;
+            top: 50%;
+            left: 50%;
+            border: 1px solid;
             -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
-            
+
         }
-        #xBtn{
-            position:absolute;
-            left:99%;
-            top:0%;
-            
-            -webkit-transform: translate(-99%, 0%);
-            transform: translate(-99%, 0%);
+
+        #xBtn {
+            position: absolute;
+            left: 65%;
+            top: 0%;
+            z-index: 999;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            -webkit-transform: translate(-1%, 0%);
+            transform: translate(-1%, 0%);
+
         }
-        [draggable=true]{
-            cursor:move;
+
+        [draggable=true] {
+            cursor: move;
         }
-        </style>
-    </head>
-    <body>
+
+        .modal-header {
+            position: relative;
+            margin-top: -20px;
+            color: #ddd;
+            background-color: #444;
+            margin-bottom: -10px;
+        }
+
+        .close {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            opacity: 0.3;
+        }
+
+        .close:hover {
+            opacity: 1;
+        }
+
+        .close:before,
+        .close:after {
+            position: absolute;
+            left: 15px;
+            content: ' ';
+            height: 22px;
+            width: 2px;
+            background-color: white;
+        }
+
+        .close:before {
+            transform: rotate(45deg);
+        }
+
+        .close:after {
+            transform: rotate(-45deg);
+        }
+
+        .modal-title {
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="main">
         <h1>포켓몬 방어상성 검색기</h1>
-        <div class="searchForm"><input type="text" id="searchKeyword" placeholder="포켓몬 이름 입력" autofocus /> <button id="searchBtn" type="button">Search</button>
-        <button type="button" id="optionBtn">Option</button></div>
-        
-        <b id = "searchResult"> </b>
-        <p id = "monsterName"> </p>
+        <div class="searchForm"><input type="text" id="searchKeyword" placeholder="포켓몬 이름 입력" autofocus /> <button
+                id="searchBtn" type="button">Search</button>
+            <button type="button" id="optionBtn">Option</button></div>
+
+        <b id="searchResult"> </b>
+        <p id="monsterName"> </p>
         <hr />
-        <div id = "main">
-            
-            <b id="goodDescription">좋은 효과</b>
-            <p id="goodResult"> </p>
-            <b id="usualDescription">보통 효과</b>
-            <p id="usualResult"> </p>
-            <b id="notDescription">없는 효과</b>
-            <p id="notResult"> </p>
-            <b id="lessDescription">별로 효과</b>
-            <p id="lessResult"> </p>
-        </div>
+
+        <b id="goodDescription">좋은 효과</b>
+        <p id="goodResult"> </p>
+        <b id="usualDescription">보통 효과</b>
+        <p id="usualResult"> </p>
+        <b id="notDescription">없는 효과</b>
+        <p id="notResult"> </p>
+        <b id="lessDescription">별로 효과</b>
+        <p id="lessResult"> </p>
         <hr />
         <p>모든 검색은 pokemon.fandom.com에 연결됩니다.</p>
-        <p class="ccl"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.</p>
-        
-            <div id="optionModal" draggable="true" >
-                <h3 class="move">Options</h3>
-                <button id="xBtn" type="button">x</button>
-                <hr />
-                <input type="checkbox" class="option1" value="good" checked /><label id="checkGood" >좋은 효과</label><br />
-                <input type="checkbox" class="option1" value="usual" checked /><label id="checkUseal" >보통 효과</label><br />
-                <input type="checkbox" class="option1" value="not" checked /><label id="checkNo" >없는 효과</label><br />
-                <input type="checkbox" class="option1" value="less" checked /><label id="checkLess" >별로 효과</label><br />
-            </div>
+        <p class="ccl"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="크리에이티브 커먼즈 라이선스"
+                    style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />이 저작물은
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0
+                Unported
+                라이선스</a>에 따라 이용할 수 있습니다.</p>
 
-        <script src="pokefinder.js"></script>
-    </body>
+        <div id="optionModal" draggable="true">
+            <div class="modal-header">
+
+                <h4 class="modal-title">&nbsp;설정</h4>
+                <div id="xBtn">
+                    <a href="#" class='close'></a>
+                </div>
+            </div>
+            <!-- <button id="xBtn" type="button">x</button> -->
+            <b>&nbsp;효과 표시</b> <br />
+            <input type="checkbox" class="option1" value="good" checked /><label id="checkGood">좋은 효과</label><br />
+            <input type="checkbox" class="option1" value="usual" checked /><label id="checkUseal">보통 효과</label><br />
+            <input type="checkbox" class="option1" value="not" checked /><label id="checkNo">없는 효과</label><br />
+            <input type="checkbox" class="option1" value="less" checked /><label id="checkLess">별로 효과</label><br />
+
+        </div>
+    </div>
+
+    <script src="pokefinder.js"></script>
+</body>
+
 </html>

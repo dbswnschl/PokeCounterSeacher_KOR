@@ -22,8 +22,14 @@ let checkLess = document.getElementById('checkLess');
 optionBtn.onclick = (e) => {
     modal.style.display = "block";
 };
-let initX, initY, mousePressX, mousePressY;
+xBtn.onmouseover = (e)=>{
+    document.getElementsByClassName("close")[0].style.opacity = 1;
+};
+xBtn.onmouseleave = (e)=>{
+    document.getElementsByClassName("close")[0].style.opacity = 0.3;
 
+}
+let initX, initY, mousePressX, mousePressY;
 modal.addEventListener('mousedown', (e)=> {
 
     e.preventDefault();
