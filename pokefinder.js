@@ -1,23 +1,101 @@
 
 let searchBtn = document.getElementById('searchBtn');
 let searchBox = document.getElementById('searchKeyword');
+
+let goodResult = document.getElementById('goodResult');
+let usualResult = document.getElementById('usualResult');
+let notResult = document.getElementById('notResult');
+let lessResult = document.getElementById('lessResult');
+let monsterName = document.getElementById('monsterName');
+
+let optionBtn = document.getElementById('optionBtn');
+let modal = document.getElementById('optionModal');
+let xBtn = document.getElementById('xBtn');
+let options = document.getElementsByClassName('option1');
+let resultData = null;
+optionBtn.onclick = (e)=>{
+    modal.style.display = "block";
+};
+let config = {
+    good : true,
+    usual : true,
+    not : true,
+    less : true
+}
+let reDisplay=()=>{
+    if(resultData === null)
+        return;
+    
+    if(config.good){
+        goodResult.innerHTML = resultData.goodResult;
+        document.getElementById('goodDescription').style.display='block';        
+    }
+    else{
+        goodResult.innerHTML = "";      
+        document.getElementById('goodDescription').style.display='none';
+    }
+    if(config.usual){
+        usualResult.innerHTML = resultData.usualResult;
+        document.getElementById('usualDescription').style.display='block';        
+    }
+    else{
+        usualResult.innerHTML = "";      
+        document.getElementById('usualDescription').style.display='none';
+    }
+    if(config.not){
+        notResult.innerHTML = resultData.notResult;
+        document.getElementById('notDescription').style.display='block';        
+    }
+    else{
+        notResult.innerHTML = "";      
+        document.getElementById('notDescription').style.display='none';
+    }
+    if(config.less){
+        lessResult.innerHTML = resultData.lessResult;
+        document.getElementById('lessDescription').style.display='block';        
+    }
+    else{
+        lessResult.innerHTML = "";      
+        document.getElementById('lessDescription').style.display='none';
+    }
+
+
+
+
+    if(config.usual)
+        usualResult.innerHTML = resultData.usualResult;
+    else
+        usualResult.innerHTML = "";
+    if(config.not)
+        notResult.innerHTML = resultData.notResult;
+    else
+        notResult.innerHTML = "";
+    if(config.less)
+        lessResult.innerHTML = resultData.lessResult;
+    else
+        lessResult.innerHTML = "";
+}
+
+for(let option of options){
+    option.onchange = (e)=>{
+        config[option.value] = !config[option.value];
+        reDisplay();
+    }
+}
+xBtn.onclick = (e)=>{
+    modal.style.display = "none";
+}
 searchBox.onkeypress=(e)=>{
     if(e.keyCode === 13){
         searchBtn.click();
     }
 };
-const search=(keyword)=>{
-    let goodResult = document.getElementById('goodResult');
-    let usualResult = document.getElementById('usualResult');
-    let notResult = document.getElementById('notResult');
-    let lessResult = document.getElementById('lessResult');
-    let monsterName = document.getElementById('monsterName');
-    goodResult.innerHTML = keyword.goodResult;
-    usualResult.innerHTML = keyword.usualResult;
-    notResult.innerHTML = keyword.notResult;
-    lessResult.innerHTML = keyword.lessResult;
-    monsterName.innerHTML = keyword.monsterName;
+const search=()=>{
+    reDisplay();
+    searchBox.value = "";
+    monsterName.innerHTML = resultData.monsterName;
     document.getElementById('searchResult').innerText = "검색 결과";
+    
 };
 let noSearch=()=>{
     alert("포켓몬 이름을 확인해 주세요.");
@@ -55,11 +133,9 @@ searchBtn.onclick = ()=>{
                 if (name !== null){
                     name = name.innerHTML;
                 }
-                
-                search({goodResult:good, usualResult:usual, notResult:not, lessResult:less, monsterName:name });
+                resultData = {goodResult:good, usualResult:usual, notResult:not, lessResult:less, monsterName:name };
+                search();
         }catch(e){
-            console.log({goodResult:good, usualResult:usual, notResult:not, lessResult:less, monsterName:name });
-            console.log(e);
             noSearch();
         }
     }
