@@ -15,9 +15,9 @@
         }
         #optionModal{
             display:none;
-            position: fixed;
+            position: absolute;
             background-color:white;
-            overflow:auto;
+            overflow:hidden;
             padding:10px;
             z-index: 9999;
             top:50%;
@@ -25,6 +25,7 @@
             border:1px solid;
             -webkit-transform: translate(-50%, -50%);
             transform: translate(-50%, -50%);
+            
         }
         #xBtn{
             position:absolute;
@@ -33,6 +34,9 @@
             
             -webkit-transform: translate(-99%, 0%);
             transform: translate(-99%, 0%);
+        }
+        [draggable=true]{
+            cursor:move;
         }
         </style>
     </head>
@@ -59,14 +63,14 @@
         <p>모든 검색은 pokemon.fandom.com에 연결됩니다.</p>
         <p class="ccl"><a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/"><img alt="크리에이티브 커먼즈 라이선스" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />이 저작물은 <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">크리에이티브 커먼즈 저작자표시-동일조건변경허락 3.0 Unported 라이선스</a>에 따라 이용할 수 있습니다.</p>
         
-            <div id="optionModal" >
-                <h3>Options</h3>
+            <div id="optionModal" draggable="true" >
+                <h3 class="move">Options</h3>
                 <button id="xBtn" type="button">x</button>
                 <hr />
-                <input type="checkbox" class="option1" value="good" checked /><label >좋은 효과</label><br />
-                <input type="checkbox" class="option1" value="usual" checked /><label >보통 효과</label><br />
-                <input type="checkbox" class="option1" value="not" checked /><label >없는 효과</label><br />
-                <input type="checkbox" class="option1" value="less" checked /><label >별로 효과</label><br />
+                <input type="checkbox" class="option1" value="good" checked /><label id="checkGood" >좋은 효과</label><br />
+                <input type="checkbox" class="option1" value="usual" checked /><label id="checkUseal" >보통 효과</label><br />
+                <input type="checkbox" class="option1" value="not" checked /><label id="checkNo" >없는 효과</label><br />
+                <input type="checkbox" class="option1" value="less" checked /><label id="checkLess" >별로 효과</label><br />
             </div>
 
         <script src="pokefinder.js"></script>
