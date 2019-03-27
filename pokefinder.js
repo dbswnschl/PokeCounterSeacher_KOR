@@ -22,15 +22,15 @@ let checkLess = document.getElementById('checkLess');
 optionBtn.onclick = (e) => {
     modal.style.display = "block";
 };
-xBtn.onmouseover = (e)=>{
+xBtn.onmouseover = (e) => {
     document.getElementsByClassName("close")[0].style.opacity = 1;
 };
-xBtn.onmouseleave = (e)=>{
+xBtn.onmouseleave = (e) => {
     document.getElementsByClassName("close")[0].style.opacity = 0.3;
 
 }
 let initX, initY, mousePressX, mousePressY;
-modal.addEventListener('mousedown', (e)=> {
+modal.addEventListener('mousedown', (e) => {
 
     e.preventDefault();
     initX = modal.offsetLeft;
@@ -40,14 +40,14 @@ modal.addEventListener('mousedown', (e)=> {
 
     modal.addEventListener('mousemove', dragIt, false);
 
-    window.addEventListener('mouseup', ()=> {
+    window.addEventListener('mouseup', () => {
         modal.removeEventListener('mousemove', dragIt, false);
     }, false);
 
 }, false);
-dragIt =(e)=> {
-    modal.style.left = initX+e.pageX-firstX + 'px';
-    modal.style.top = initY+e.pageY-firstY + 'px';
+dragIt = (e) => {
+    modal.style.left = initX + e.pageX - firstX + 'px';
+    modal.style.top = initY + e.pageY - firstY + 'px';
 }
 let config = {
     good: true,
@@ -115,16 +115,16 @@ for (let option of options) {
         reDisplay();
     }
 }
-checkGood.onclick = (e)=>{
+checkGood.onclick = (e) => {
     options[0].checked = !options[0].checked;
 }
-checkUseal.onclick = (e)=>{
+checkUseal.onclick = (e) => {
     options[1].checked = !options[1].checked;
 }
-checkNo.onclick = (e)=>{
+checkNo.onclick = (e) => {
     options[2].checked = !options[2].checked;
 }
-checkLess.onclick = (e)=>{
+checkLess.onclick = (e) => {
     options[3].checked = !options[3].checked;
 }
 
@@ -143,8 +143,17 @@ const search = () => {
     document.getElementById('searchResult').innerText = "검색 결과";
 
 };
+window.onkeypress = () => {
+    if (document.activeElement !== 'searchKeyword') {
+        searchBox.focus();
+    }
+}
+
 let noSearch = () => {
-    alert("포켓몬 이름을 확인해 주세요.");
+    alert('포켓몬 이름을 확인해 주세요.');
+    searchBox.value = "";
+    searchBox.focus();
+
 };
 searchBtn.onclick = () => {
     let xhr = new XMLHttpRequest();
@@ -185,9 +194,13 @@ searchBtn.onclick = () => {
             noSearch();
         }
     }
-    xhr.open("GET", "https://pokemon.fandom.com/ko/wiki/" + encodeURI(searchKeyword) + "_(" + encodeURI("포켓몬") + ")", true);
-    xhr.send();
+    try {
 
+        xhr.open("GET", "https://pokemon.fandom.com/ko/wiki/" + encodeURI(searchKeyword) + "_(" + encodeURI("포켓몬") + ")", true);
+        xhr.send();
+    } catch (e) {
+
+    }
 
 
 
