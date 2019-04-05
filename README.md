@@ -10,15 +10,6 @@
 > `1.4`  
 > ![1.4ver](./sample4.png)  
 
-> `1.3`  
-> ![1.3ver](./sample3.png)  
-
-> `1.1`  
-> ![1.1ver](./sample2.png)  
-
-> `1.0`  
-> ![1.0ver](./sample.png)  
-
 
 ### 버전 
 --------------  
@@ -41,4 +32,4 @@
 
 ### RELEASE
 --------------
-`준비중`
+[1.4Ver](https://github.com/dbswnschl/PokeCounterSeacher_KOR/releases/tag/1.4)
